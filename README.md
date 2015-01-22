@@ -29,13 +29,13 @@ addChild(Logger.getInstance());
 
 ## Preview 预览图
 logger Logger面板（包含stats log）输出  
-![](https://github.com/ascollection/simple-list/raw/master/bin/preview/logger.jpg)  
+![](https://raw.githubusercontent.com/ascollection/debug/master/bin/preview/logger.jpg)  
 console 浏览器控制台输出  
-![](https://github.com/ascollection/simple-list/raw/master/bin/preview/console.jpg)  
+![](https://raw.githubusercontent.com/ascollection/debug/master/bin/preview/console.jpg)  
 trace AVM输出  
-![](https://github.com/ascollection/simple-list/raw/master/bin/preview/trace.jpg)  
+![](https://raw.githubusercontent.com/ascollection/debug/master/bin/preview/trace.jpg)  
 arthropod 通过localconnection输出到air工具（arthropod）  
-![](https://github.com/ascollection/simple-list/raw/master/bin/preview/arthropod.jpg)  
+![](https://raw.githubusercontent.com/ascollection/debug/master/bin/preview/arthropod.jpg)  
 
 ## Arthropod tool
 [Arthropod air安装文件](https://github.com/ascollection/debug/tree/master/tool)  
