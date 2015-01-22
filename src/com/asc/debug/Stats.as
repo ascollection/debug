@@ -15,8 +15,8 @@ package com.asc.debug
 	public class Stats extends Sprite
 	{
 		
-		protected const WIDTH:uint = 400;
-		protected const HEIGHT:uint = 300;
+		protected var WIDTH:uint;
+		protected var HEIGHT:uint;
 		
 		protected var xml:XML;
 		protected var xml2:XML;
@@ -42,16 +42,14 @@ package com.asc.debug
 		
 		protected var colors:Colors = new Colors();
 		
-		/**
-		 * <b>Stats</b> FPS, MS and MEM, all in one.
-		 */
-		public function Stats():void
+		public function Stats(w:uint = 400, h:uint = 300):void
 		{
-			
+			WIDTH = w;
+			HEIGHT = h;
 			mem_max = 0;
 			
-			xml =                 <xml><fps>FPS:</fps><ms>MS:</ms></xml>;
-			xml2 =           <xml><mem>MEM:</mem><memMax>MAX:</memMax></xml>;
+			xml = <xml><fps>FPS:</fps><ms>MS:</ms></xml>;
+			xml2 = <xml><mem>MEM:</mem><memMax>MAX:</memMax></xml>;
 			
 			style = new StyleSheet();
 			style.setStyle('xml', {fontSize: '9px', fontFamily: '_sans', leading: '-2px'});
@@ -84,13 +82,11 @@ package com.asc.debug
 			
 			addEventListener(Event.ADDED_TO_STAGE, init, false, 0, true);
 			addEventListener(Event.REMOVED_FROM_STAGE, destroy, false, 0, true);
-		
 		}
 		
 		private function init(e:Event):void
 		{
-			
-			graphics.beginFill(colors.bg, 0);
+			graphics.beginFill(colors.bg);
 			graphics.drawRect(0, 0, WIDTH, HEIGHT);
 			graphics.endFill();
 			
@@ -102,12 +98,10 @@ package com.asc.debug
 			graphics.drawRect(0, 30, WIDTH, HEIGHT - 30);
 			
 			addEventListener(Event.ENTER_FRAME, update);
-		
 		}
 		
 		private function destroy(e:Event):void
 		{
-			
 			graphics.clear();
 			
 			while (numChildren > 0)
@@ -116,7 +110,6 @@ package com.asc.debug
 			graph.dispose();
 			
 			removeEventListener(Event.ENTER_FRAME, update);
-		
 		}
 		
 		private function update(e:Event):void
@@ -129,7 +122,7 @@ package com.asc.debug
 			{
 				
 				ms_prev = timer;
-				mem = Number((System.totalMemory * 0.000000954).toFixed(3));
+				mem = Number((System.totalMemory * 0.000000954).toFixed(3)); // 1 / (1024*1024) to convert to MB
 				mem_max = mem_max > mem ? mem_max : mem;
 				
 				fps_graph = Math.min(graph.height, (fps / stage.frameRate) * graph.height);
@@ -149,7 +142,6 @@ package com.asc.debug
 				xml2.memMax = "MAX: " + mem_max;
 				
 				fps = 0;
-				
 			}
 			
 			fps++;
@@ -165,9 +157,7 @@ package com.asc.debug
 		{
 			return "#" + color.toString(16);
 		}
-	
 	}
-
 }
 
 class Colors

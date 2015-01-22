@@ -23,7 +23,7 @@
 		public static var secure:Boolean = false;
 		public static var secureDomain:String = '*';
 		
-		public static var allowLog:Boolean = true;
+		public static var allowArthropodLog:Boolean = true;
 		public static var allowAdvancedTrace:Boolean = true;
 		public static var allowOutputTrace:Boolean = true;
 		public static var allowConsole:Boolean = true;
@@ -96,6 +96,7 @@
 			var argIndex:int = 0;
 			var arg:String = null;
 			var console_fun:String;
+			
 			if (args != null)
 			{
 				while ((pIndex = msg.indexOf(placehoder, pIndex)) != -1 && args.length > 0)
@@ -108,6 +109,19 @@
 				{
 					msg += " " + args.join(" ");
 				}
+			}
+			
+			if (operation == ARRAY_OPERATION)
+			{
+				operation = LOG_OPERATION;
+				msgColor = BLUE;
+				msg = 'array: ' + msg;
+			}
+			if (operation == OBJECT_OPERATION)
+			{
+				operation = LOG_OPERATION;
+				msgColor = GREEN;
+				msg = 'object: ' + msg;
 			}
 			
 			msg = wrapMessage(msg, allowAdvancedTrace);
@@ -133,7 +147,7 @@
 								console_fun = 'console.log';
 								break;
 							case WARNING_OPERATION: 
-								console_fun = 'console.warm';
+								console_fun = 'console.warn';
 								break;
 							case ERROR_OPERATION: 
 								console_fun = 'console.error';
@@ -149,7 +163,7 @@
 								console_fun = 'console.log';
 						}
 						
-						ExternalInterface.call(console_fun, msg)
+						ExternalInterface.call(console_fun, obj)
 					}
 				}
 				catch (e:*)
@@ -171,7 +185,7 @@
 				inited = true;
 			}
 			
-			if (allowLog)
+			if (allowArthropodLog)
 			{
 				if (_color >= 0)
 				{
@@ -272,18 +286,6 @@
 			type = type.replace("()", "").replace("MethodClosure", "Function").replace(/\$$/, "");
 			
 			return type;
-		}
-		
-		public static function stackTrace():void
-		{
-			try
-			{
-				throw new Error();
-			}
-			catch (err:Error)
-			{
-				trace(err.getStackTrace());
-			}
 		}
 		
 		private static function status(e:StatusEvent):void
