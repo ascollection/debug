@@ -196,6 +196,11 @@ package com.asc.debug
 			logsText.scrollV = logsText.maxScrollV - logsText.scrollV + 1;
 		}
 		
+		public function clear():void
+		{
+			logsText.htmlText = "";
+		}
+		
 		override public function set visible(value:Boolean):void
 		{
 			super.visible = value;

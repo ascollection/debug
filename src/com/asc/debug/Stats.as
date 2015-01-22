@@ -52,18 +52,19 @@ package com.asc.debug
 			xml2 = <xml><mem>MEM:</mem><memMax>MAX:</memMax></xml>;
 			
 			style = new StyleSheet();
-			style.setStyle('xml', {fontSize: '9px', fontFamily: '_sans', leading: '-2px'});
+			style.setStyle('xml', {fontSize: '10px', fontFamily: '_sans', leading: '-2px', lineHeight: '5px'});
 			style.setStyle('fps', {color: hex2css(colors.fps)});
 			style.setStyle('ms', {color: hex2css(colors.ms)});
 			
 			style2 = new StyleSheet();
-			style2.setStyle('xml', {fontSize: '9px', fontFamily: '_sans', leading: '-2px'});
+			style2.setStyle('xml', {fontSize: '10px', fontFamily: '_sans', leading: '-2px', lineHeight: '5px'});
 			style2.setStyle('mem', {color: hex2css(colors.mem)});
 			style2.setStyle('memMax', {color: hex2css(colors.memmax)});
 			
 			text = new TextField();
 			text.width = WIDTH;
 			text.height = 30;
+			text.x = 10;
 			text.styleSheet = style;
 			text.condenseWhite = true;
 			text.selectable = false;
@@ -72,7 +73,7 @@ package com.asc.debug
 			text2 = new TextField();
 			text2.width = WIDTH;
 			text2.height = 30;
-			text2.x = 80;
+			text2.x = 90;
 			text2.styleSheet = style2;
 			text2.condenseWhite = true;
 			text2.selectable = false;

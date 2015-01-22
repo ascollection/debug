@@ -132,7 +132,10 @@
 				{
 					msgColor = _color;
 				}
-				Logger.getInstance().log(msg, hex2css(msgColor));
+				if (operation == CLEAR_OPERATION)
+					Logger.getInstance().clear();
+				else
+					Logger.getInstance().log(msg, hex2css(msgColor));
 			}
 			
 			if (allowConsole)
@@ -163,7 +166,7 @@
 								console_fun = 'console.log';
 						}
 						
-						ExternalInterface.call(console_fun, obj)
+						ExternalInterface.call(console_fun, (operation == CLEAR_OPERATION || operation == ARRAY_OPERATION || operation == OBJECT_OPERATION) ? obj : msg)
 					}
 				}
 				catch (e:*)
